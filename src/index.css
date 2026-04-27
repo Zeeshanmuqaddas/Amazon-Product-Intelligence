@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-bg: #0C0D10;
+  --color-dark-card: #141518;
+  --color-dark-border: #232529;
+  
+  --color-accent-indigo: #6366F1;
+  --color-accent-teal: #14B8A6;
+  --color-accent-amber: #F59E0B;
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: #E2E8F0;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-dark-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Markdown Styles */
+.markdown-body {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  color: #E2E8F0;
+}
+
+.markdown-body h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFF;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-dark-border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.markdown-body h1:first-child {
+  margin-top: 0;
+}
+
+.markdown-body h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #F8FAFC;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown-body p {
+  margin-bottom: 1rem;
+  color: #CBD5E1;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.5rem;
+  color: #CBD5E1;
+}
+
+.markdown-body strong {
+  color: #F8FAFC;
+  font-weight: 600;
+}
+
+.markdown-body code {
+  background-color: #1E293B;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875em;
+  color: #93C5FD;
+}
+
+/* Loader animation */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+.agent-active::before {
+  content: '';
+  position: absolute;
+  top: -4px; left: -4px; right: -4px; bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent-teal);
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
