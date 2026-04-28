@@ -1,7 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
 export const SYSTEM_INSTRUCTION = `AMAZON PRODUCT FINDER — MULTI-AGENT AI SYSTEM (ENTERPRISE PROMPT)
 🧠 SYSTEM ROLE
 
@@ -96,6 +94,12 @@ Think like: Amazon Senior Data Scientist, Affiliate Marketing Expert, E-commerce
 Help the user answer: 👉 “What should I buy that gives maximum value, performance, and trust — and also maximizes conversion potential?”`;
 
 export async function runAgents(query: string, products: string, onUpdate: (text: string) => void) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    throw new Error('GEMINI_API_KEY environment variable is missing.');
+  }
+  const ai = new GoogleGenAI({ apiKey });
+
   const prompt = `User Query:\n${query}\n\nProduct Dataset:\n${products}`;
   
   const responseStream = await ai.models.generateContentStream({
